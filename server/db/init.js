@@ -9,6 +9,7 @@ function readJSONFile() {
     for (let i = 0; i < dataLines.length; i++) {
         parsedLine = JSON.parse(dataLines[i]);
         delete parsedLine['_id'];
+        parsedLine.reviews = [];    // Append reviews field.
         dataLines[i] = parsedLine;
     }
     return dataLines;

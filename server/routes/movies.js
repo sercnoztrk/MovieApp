@@ -19,4 +19,8 @@ router.get('/', async function(req, res, next) {
   res.send(moviesResult).status(200);
 });
 
+router.get('/:id', async function(req, res, next) {
+  
+});
+
 module.exports = router;
