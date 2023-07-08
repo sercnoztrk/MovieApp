@@ -3,13 +3,12 @@ const router = express.Router();
 const mongoClient = require("../db/client");
 const connectDB = require("../db/connect");
 
-/* GET users listing. */
 router.get('/', async function(req, res, next) {
   var moviesResult;
   try {
     const db = await connectDB(mongoClient);
     const moviesCollection = await db.collection("movies");
-    moviesResult = await moviesCollection.find({}).limit(50).toArray();
+    moviesResult = await moviesCollection.find({}).limit(100).toArray();
   } catch (error) {
     console.error(error);
     res.send(error);
@@ -20,7 +19,7 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/:id', async function(req, res, next) {
-  
+  // Used React Router v6 for testing purposes
 });
 
 module.exports = router;

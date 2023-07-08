@@ -33,7 +33,7 @@ const Navbar = ({
             className="w-[25px] h-[31.6px]  sm:w-[30px] sm:h-[38px] mx-1"
           />
           <p className="self-center text-[18px] sm:text-[21px]">
-            MOVIE <span className="text-btn">MAN</span>{" "}
+            COUNTLY <span className="text-btn">MOVIES</span>{" "}
           </p>
         </div>
       </div>

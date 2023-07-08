@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/navbar/Navbar";
 import SideBar from "./components/Sidebar/SideBar";
-import Explore from "./pages/Explore";
 import MoviePage from "./pages/moviePage/MoviePage";
 import MoviesPage from "./pages/moviesPage/MoviesPage";
 import "./styles/globalStyles.css";
@@ -13,8 +12,9 @@ function App() {
   const [openMenu, setOpenMenu] = useState(false);
 
   useEffect(() => {
-    if (mode === "light") { return document.documentElement.classList.remove("dark") }
-    else { document.documentElement.classList.add("dark") }
+    if (mode === "light") {
+      return document.documentElement.classList.remove("dark")
+    } else { document.documentElement.classList.add("dark") }
   }, [mode]);
   
   return (
@@ -29,7 +29,7 @@ function App() {
                 <Routes>
                   <Route path="movies/:id" element={<MoviePage />}/>
                   <Route path="movies" element={<MoviesPage />} />
-                  <Route path="/" element={<Explore />} />
+                  <Route path="/" element={<MoviesPage />} />
                 </Routes>
               </div>
             </div>

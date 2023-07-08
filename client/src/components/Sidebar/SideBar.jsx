@@ -1,23 +1,25 @@
-import { sidbarItem } from "../../constans";
 import SideBarList from "./SideBarList";
 import { styles } from "../../styles/styles";
-import { MdMenu, MdMenuOpen } from "react-icons/md";
+import { MdMenuOpen } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { DarkModeToggle } from "@anatoliygatt/dark-mode-toggle";
-const SideBar = ({ openMenu, setOpenMenu,mode,setMode }) => {
+import { MdMonitor, BiCameraMovie } from "../../common/icons";
+
+const sidebarItems = [
+  { title: "Movies", icon: <BiCameraMovie /> },
+  { title: "Series", icon: <MdMonitor /> },
+];
+
+const SideBar = ({ openMenu, setOpenMenu, mode, setMode }) => {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
-
+  const location = useLocation();
   useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowSize([window.innerWidth, window.innerHeight]);
-    };
-
+    const handleWindowResize = () => { setWindowSize([window.innerWidth, window.innerHeight]) };
     window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
+    return () => { window.removeEventListener("resize", handleWindowResize) };
   });
+
   useEffect(() => {
     if (windowSize[0] >= 1024) {
       return setOpenMenu(true);
@@ -25,6 +27,7 @@ const SideBar = ({ openMenu, setOpenMenu,mode,setMode }) => {
       return setOpenMenu(false);
     }
   }, [windowSize]);
+
   return (
     <div
       className={`${styles.sideBar} origin-left ${!openMenu && 'scale-x-0 fixed ' } ${openMenu && 'fixed lg:sticky  dark:bg-[#07070a] lg:dark:bg-transparent bg-screenLight'}  duration-300 z-[52]`}>
@@ -56,7 +59,7 @@ const SideBar = ({ openMenu, setOpenMenu,mode,setMode }) => {
         </div>
       </div>
       <div >
-        <SideBarList subTitle="MENU" items={sidbarItem} menu={openMenu} />
+        <SideBarList subTitle="MENU" items={sidebarItems} location={location} menu={openMenu} />
       </div>
     </div>
   );
