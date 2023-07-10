@@ -8,7 +8,8 @@ router.get('/', async function(req, res, next) {
   try {
     const db = await connectDB(mongoClient);
     const moviesCollection = await db.collection("movies");
-    moviesResult = await moviesCollection.find({}).limit(100).toArray();
+    // moviesResult = await moviesCollection.find({}).limit(100).toArray();
+    moviesResult = await moviesCollection.aggregate([{ $sample: { size: 50 } }]).toArray();     // Randomly pick 50 movies from DB
   } catch (error) {
     console.error(error);
     res.send(error);
