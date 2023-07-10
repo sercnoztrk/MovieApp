@@ -15,7 +15,7 @@ const ItemCard = ({ movie }) => {
                   Year : {movie?.year.$numberInt}
                 </p>
                 <p className=" px-5 pt-1 font-semibold">
-                  {movie?.runtime.$numberInt || "--"} minutes
+                  {movie?.runtime?.$numberInt || "--"} minutes
                 </p>
                 <div className="flex flex-wrap mt-2 mx-2 text-sm font-semibold">
                   {movie?.genres.slice(0, 3).map((genre, index) => (
